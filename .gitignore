@@ -1,0 +1,9 @@
+# This repo is PUBLIC and holds the rendered page only.
+# Nothing from the research repo's data/ or reports/ belongs here, ever.
+*.csv
+*.xls
+*.xlsx
+*.docx
+*.json
+data/
+reports/
