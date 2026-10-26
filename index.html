@@ -127,6 +127,34 @@
   .note p+p{margin-top:9px}
   .note em{color:var(--ink);font-style:italic}
 
+  /* market rhythm: volatility and plateau tracking (market_rhythm.py) */
+  .rhy-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:16px}
+  .rhy-head p{margin:0;font-family:Spectral,Georgia,serif;font-size:14.5px;color:var(--muted);flex:1;min-width:260px}
+  .rtiles{margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .rt{background:var(--surface);border:1px solid var(--rule);border-radius:3px;box-shadow:var(--shadow);
+    padding:16px 18px;display:flex;flex-direction:column;gap:9px}
+  .rt h3{margin:0;font-size:13.5px;letter-spacing:-.01em}
+  .rt .big{font-family:"IBM Plex Mono",monospace;font-size:32px;font-weight:600;line-height:1;
+    letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .rt .big small{font-size:13px;color:var(--muted);font-weight:400;letter-spacing:0}
+  .rt p{margin:0;font-family:Spectral,Georgia,serif;font-size:13.5px;color:var(--muted);line-height:1.5}
+  .rt .scale{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;
+    font-size:9.5px;color:var(--faint);letter-spacing:.05em;text-transform:uppercase;margin-top:-4px}
+  .track .zone{position:absolute;top:0;bottom:0;background:var(--ok-bg)}
+  .track .mk.n{background:var(--accent)}
+  .rhist{width:100%;border-collapse:collapse;margin-top:18px;font-variant-numeric:tabular-nums}
+  .rhist th{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--faint);font-weight:600;text-align:right;
+    padding:8px 6px;border-bottom:1px solid var(--rule)}
+  .rhist th:first-child,.rhist td:first-child{text-align:left}
+  .rhist td{font-family:"IBM Plex Mono",monospace;font-size:12.5px;text-align:right;
+    padding:9px 6px;border-bottom:1px solid var(--rule-soft)}
+  .rhist td:first-child{font-family:Archivo,sans-serif;font-size:13.5px;font-weight:500}
+  .rhist tr.now td{background:var(--band)}
+  .rhist tr.now td:first-child::after{content:"  ← today";font-family:"IBM Plex Mono",monospace;
+    font-size:10px;color:var(--accent);font-weight:600}
+  @media (max-width:760px){.rhist .days{display:none} .rhist td,.rhist th{padding:8px 3px}}
+
   footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--rule);
     font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--faint);line-height:1.75}
 
@@ -312,6 +340,55 @@
     <div class="chipw"><span class="chip ok"><span class="dot"></span>In range</span></div>
     <div class="auc"><div class="aucbar"><i style="right:50%;width:13.0%;background:var(--crit)"></i><span class="mid"></span></div><span class="aucv">0.37</span></div>
   </div></div>
+
+  <h2>Market rhythm — how calm, and is it going anywhere?</h2>
+  <div class="rhy-head">
+    <span class="chip ok"><span class="dot"></span>Calm and flat</span>
+    <p>Two plain measurements of how the S&amp;P 500 has been moving lately, as of 2026-10-19.
+      They describe the market's mood; unlike the fourteen signs above, they are not warning signs —
+      the history below shows why.</p>
+  </div>
+  <div class="rtiles">
+    <div class="rt">
+      <h3>How jumpy, day to day</h3>
+      <div class="big">9.0%<small> over 20 days, yearly rate</small></div>
+      <div class="track"><span class="zone" style="left:0.0%;width:40.0%"></span><span class="mk n" style="left:25.0%"></span></div>
+      <div class="scale"><span>calmest</span><span>last 10 years</span><span>jumpiest</span></div>
+      <div><svg viewBox="0 0 116 26" width="116" height="26" aria-hidden="true"><path d="M3.0,16.0 L7.8,18.9 L12.6,19.6 L17.3,17.5 L22.1,18.9 L26.9,21.7 L31.7,7.6 L36.5,5.6 L41.3,4.7 L46.0,3.0 L50.8,13.8 L55.6,19.0 L60.4,19.0 L65.2,12.7 L70.0,11.2 L74.7,12.3 L79.5,12.7 L84.3,21.0 L89.1,23.0 L93.9,21.9 L98.7,18.5 L103.4,17.5 L108.2,19.0 L113.0,20.9" fill="none" stroke="var(--faint)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="113.0" cy="20.9" r="2.6" fill="var(--accent)"/></svg></div>
+      <p>Calmer than 75% of the last ten years (typical since
+        1938: 11.8%). Over 60 days: 11.0%. The small chart
+        is the last six months, week by week.</p>
+    </div>
+    <div class="rt">
+      <h3>Is it going anywhere?</h3>
+      <div class="big">+0.2%<small> in 40 trading days</small></div>
+      <div class="track"><span class="zone" style="left:0.0%;width:10.0%"></span><span class="mk n" style="left:1.1%"></span></div>
+      <div class="scale"><span>going nowhere</span><span>straight line</span></div>
+      <p>The index has moved inside a 3.5% band and is 1.6% below its
+        52-week high. The bar shows how much of its daily movement added up to progress:
+        1%. Flat for 15 trading days.</p>
+    </div>
+    <div class="rt">
+      <h3>What a flat market costs a 3× fund</h3>
+      <div class="big">−2.2%<small> over 60 trading days</small></div>
+      <p>The index rose +3.8%; three times that is +11.3%, but a modelled 3× fund
+        (calibrated to the real one) made +9.1%. The gap is borrowing costs plus the wear of daily ups and downs. It is
+        paid whether or not a fall ever comes, and it grows the longer the market goes sideways.</p>
+    </div>
+  </div>
+  <table class="rhist">
+    <thead><tr><th>Since 1938, on days…</th><th class="days">days</th>
+      <th>fell 10%+ within 6 months</th><th>fell 20%+ within a year</th>
+      <th>typical next year</th><th>calm ended (swings doubled) within 3 months</th></tr></thead>
+    <tbody><tr><td>All days near a high</td><td class="days">12,577</td><td>15%</td><td>9%</td><td>+9.3%</td><td>20%</td></tr><tr><td>Near a high and calm</td><td class="days">7,264</td><td>13%</td><td>7%</td><td>+9.1%</td><td>27%</td></tr><tr><td>Near a high and flat</td><td class="days">3,730</td><td>16%</td><td>10%</td><td>+8.4%</td><td>13%</td></tr><tr class="now"><td>Near a high, calm and flat</td><td class="days">1,868</td><td>12%</td><td>6%</td><td>+8.3%</td><td>17%</td></tr></tbody>
+  </table>
+  <p style="font-family:Spectral,Georgia,serif;font-size:14.5px;color:var(--muted);margin:14px 0 0;max-width:74ch">
+    A calm, flat market near its high has been followed by falls slightly <em>less</em> often than
+    average, and the difference is not stable from one era to the next — so a plateau is not a
+    warning. What calm does reliably predict is that calm ends: bigger swings, in either direction.
+    <strong style="color:var(--ink);font-weight:500">For a 3× fund, the cost of a plateau is the
+    steady drag, not the crash.</strong></p>
+
 
   <div class="notes">
     <div class="note">
